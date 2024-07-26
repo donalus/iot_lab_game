@@ -39,7 +39,7 @@ def index():
     return render_template('checkin/index.html', checkins=checkins, client_address=request.remote_addr)
 
 @bp.route('/admin', methods=('GET', 'POST'))
-@login_required
+#@login_required
 def create():
     if request.method == 'POST':
         confirm = request.form['Confirm']
