@@ -12,7 +12,7 @@ This is a basic web application built using Flask and sqlite that handles checki
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
+1. Clone the repository: `git clone https://github.com/donalus/iot_lab_game.git`
 2. Install the dependencies: `pip install -r requirements.txt`
 
 ## Usage
