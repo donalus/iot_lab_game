@@ -12,14 +12,28 @@ This is a basic web application built using Flask and sqlite that handles checki
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/donalus/iot_lab_game.git`
-2. Install the dependencies: `pip install -r requirements.txt`
+1. Start from a basic RasbianOS (or similar Debian-based) install 
+2. Create a user account; I have used `iotpi`, but you can use any name you like if you change the references in the following steps.
+3. Install the required packages`sudo apt install virtualenv apache2 libapache2-mod-wsgi-py3`
+4. Make sure that mod_wsgi is loaded: `sudo a2enmod wsgi`
+5. Add your user to the www-data group: `usermod -a -G www-data iotpi`
+6. Clone the repository: `sudo git clone https://github.com/donalus/iot_lab_game.git`
+7. Fix the ownership: `sudo chown -R -f www-data:www-data /var/www/iot_lab_game`
+8. Give the group permissions: `sudo chmod 771 -R iot_lab_game` (this is not meant to be secure, the device should be ephemeral)
+9. Do you get errors if you run: `git pull`? If so, you may need to run `git config --global --unset safe.directory` and then try again.
+11. Enter the directory: `cd /var/www/iot_lab_game`
+12. Create a virtual environment: `virtualenv -p python3 venv`
+13. Activate the virtual environment: `source venv/bin/activate`
+14. Install required python libraries: `pip install -r requirements.txt`
+15. Remove the symlink to the default apache site: `sudo rm /etc/apache2/sites-enabled/000-default.conf`
+16. Copy the app's config over: `sudo cp 000-iotgame.conf /etc/apache2/sites-available/`
+17. Fix permissions: `sudo chown root:root /etc/apache2/sites-available/000-iotgame.conf`
+18. Create the symlink to enable the site: `sudo ln -s /etc/apache2/sites-available/000-iotgame.conf /etc/apache2/sites-enabled/`
+19. Restart the symlink: `sudo systemctl restart apache2`
+20. Create the database: `sudo flask --app iotgame init-db`
+21. Fix the permissions on the database: `sudo chown www-data:www-data /var/www/iot_lab_game/instance/checkin.sqlite`
+22. Check that the application is working! 
 
-## Usage
-
-1. Set up the necessary environment variables.
-2. Run the application: `python app.py`
-3. Access the application in your browser at `http://localhost:5000`.
 
 ## License
 
@@ -31,4 +45,4 @@ Contributions are welcome! Please fork the repository and submit a pull request.
 
 ## Contact
 
-If you have any questions or suggestions, feel free to reach out to me at [your-email@example.com](mailto:your-email@example.com).
+If you have any questions or suggestions, feel free to reach out to me through github @donalus.
