@@ -29,11 +29,13 @@ This is a basic web application built using Flask and sqlite that handles checki
 16. Copy the app's config over: `sudo cp 000-iotgame.conf /etc/apache2/sites-available/`
 17. Fix permissions: `sudo chown root:root /etc/apache2/sites-available/000-iotgame.conf`
 18. Create the symlink to enable the site: `sudo ln -s /etc/apache2/sites-available/000-iotgame.conf /etc/apache2/sites-enabled/`
-19. Restart the symlink: `sudo systemctl restart apache2`
+19. Restart the Apache: `sudo systemctl restart apache2`
 20. Create the database: `sudo flask --app iotgame init-db`
 21. Fix the permissions on the database: `sudo chown www-data:www-data /var/www/iot_lab_game/instance/checkin.sqlite`
+22. Restart the Apache: `sudo systemctl restart apache2`
 22. Check that the application is working! 
 
+If any updates are pulled, then restart the server.
 
 ## License
 
