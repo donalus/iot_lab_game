@@ -42,23 +42,20 @@ def index():
 @login_required
 def create():
     if request.method == 'POST':
-        title = request.form['title']
-        body = request.form['body']
+        confirm = request.form['Confirm']
         error = None
 
-        if not title:
-            error = 'Title is required.'
+        if not confirm or confirm != 'Yes' or confirm != 'yes' or confirm != 'Y' or confirm != 'y':
+            error = 'You must confirm that you want to clear the database.'
 
         if error is not None:
             flash(error)
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO post (title, body, author_id)'
-                ' VALUES (?, ?, ?)',
-                (title, body, g.user['id'])
+                'DELETE FROM checkins'
             )
             db.commit()
-            return redirect(url_for('blog.index'))
+            return redirect(url_for('checkin.index'))
 
     return render_template('checkin/admin.html')
