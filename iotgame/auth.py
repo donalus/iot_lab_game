@@ -31,7 +31,7 @@ def login_required(view):
     def wrapped_view(**kwargs):
         if g.user is None:
             pass # we don't have login yet
-            return redirect(url_for('auth.login'))
+            #return redirect(url_for('auth.login'))
 
         return view(**kwargs)
 

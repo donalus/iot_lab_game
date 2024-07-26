@@ -42,10 +42,10 @@ def index():
 @login_required
 def create():
     if request.method == 'POST':
-        confirm = request.form['Confirm']
+        confirm = request.form['confirm']
         error = None
 
-        if not confirm or confirm != 'Yes' or confirm != 'yes' or confirm != 'Y' or confirm != 'y':
+        if not confirm or (confirm != 'yes' and confirm != 'Yes' and confirm != 'y' and confirm != 'Y'):
             error = 'You must confirm that you want to clear the database.'
 
         if error is not None:
