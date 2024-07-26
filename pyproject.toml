@@ -1,0 +1,11 @@
+[project]
+name = "IoT Checkin Game"
+version = "1.0.0"
+description = "A basic checkin app built from the Flask tutorial."
+dependencies = [
+    "flask",
+]
+
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"

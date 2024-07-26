@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+<div class="container">
+  <h1>{% block title %}IoT Lab Check-In Page{% endblock %}</h1>
+  {% if g.user %}
+    <p>You Successfully Checked In!</p>
+  {% else %}
+  <form method="post">
+    <label for="team_number">Team Number/Name</label>
+    <input name="team_number" id="team_number" required>
+    <label for="client_address">Client's IP Address</label>
+    <input name="client_address" id="client_address" required value="{{ client_address }}">
+    <input type="submit" value="checkin">
+  </form>
+  {% endif %}
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<h2>Latest Team Check-Ins</h2>
+{% if not checkins %}
+  <p>No one yet! Are you going to be the first?</p>
+{% else %}
+<ol>
+  {% for checkin in checkins %}
+    {{ checkin['created'].strftime('%Y-%m-%d') }}: {{ checkin['team_number'] }} - {{ checkin['client_address'] }}
+  {% endfor %}
+</ol>
+  {% endif %}
+</div>
+{% endblock %}
