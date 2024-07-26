@@ -34,7 +34,7 @@ def index():
     checkins = db.execute(
         'SELECT id, created, team_number, client_address'
         ' FROM checkins '
-        ' ORDER BY created DESC'
+        ' ORDER BY created'
     ).fetchall()
     return render_template('checkin/index.html', checkins=checkins, client_address=request.remote_addr)
 
