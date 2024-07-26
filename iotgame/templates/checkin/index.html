@@ -26,7 +26,7 @@
 {% else %}
 <ol>
   {% for checkin in checkins %}
-    {{ checkin['created'].strftime('%Y-%m-%d') }}: {{ checkin['team_number'] }} - {{ checkin['client_address'] }}
+    <li>{{ checkin['created'].strftime('%Y-%m-%d') }}: {{ checkin['team_number'] }} - {{ checkin['client_address'] }}</li>
   {% endfor %}
 </ol>
   {% endif %}
