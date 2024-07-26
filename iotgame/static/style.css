@@ -36,7 +36,8 @@ body {
 }
 .container ol {
     text-align: left;
-
+    list-style: decimal;
+    list-style-position: inside; 
 }
 .logo {
     max-width: 100px;
