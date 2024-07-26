@@ -3,8 +3,8 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
-from game.auth import login_required
-from game.db import get_db
+from iotgame.auth import login_required
+from iotgame.db import get_db
 
 bp = Blueprint('checkin', __name__)
 
