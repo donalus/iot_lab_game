@@ -32,7 +32,7 @@ def index():
             return redirect(url_for('checkin.index'))
     db = get_db()
     checkins = db.execute(
-        'SELECT id, created, team_number, client_address'
+        'SELECT id, datetime(created, "localtime") as local_time, team_number, client_address'
         ' FROM checkins '
         ' ORDER BY created'
     ).fetchall()
